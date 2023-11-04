@@ -116,16 +116,31 @@ print(index.query(query, llm=ChatOpenAI()))
 
 
 
-load_pdf() 
+def load_pdf() 
 
-chunkify_pdf() 
+def chunkify_pdf() 
     #takes in a pdf file and returns a list of strings
+    #needs to autocreate number of chunks according to text size
+
+    return chunks_object_array, num_chunks
+
+def embed_chunks(chunks_object_array, num_chunks) 
+    #create as many embeddings according to chunks
 
 
-embed_chunks() 
-
-
-
-LLM_API_CALL() 
+def LLM_API_CALL() 
     
 
+
+def chat_interface()
+
+def chat_history()
+
+def reroute_info_to_doc()
+    #toggle what messages user wants doctor to see
+    #reroutes information
+
+
+#options to consider
+    #1. overhead tracking of consent, multilevel consent on metadata to certain data
+    #2. info passed through chatpgt that has metadata consent or clearance levels needs to perserve it accross information exchange
