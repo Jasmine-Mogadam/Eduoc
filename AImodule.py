@@ -4,6 +4,17 @@ import os
 import sys
 import chromadb
 
+from pyPDF2 import PdfReader
+from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain.text_splitter import CharacterTextSplitter
+from langchain.vectorstores import ElasticVectorSearch, Pinecone, Weaviate, FAISS
+
+#requirements
+#!pip install langchain
+#!pip install openai
+#!pip install PyPDF2
+#pip install faiss-cpu
+
 from dotenv import load_dotenv, find_dotenv
 _ = load_dotenv(find_dotenv())
 
@@ -130,7 +141,9 @@ def embed_chunks(chunks_object_array, num_chunks)
 
 def LLM_API_CALL() 
     
-
+#vector search fails when not enough information concerning query
+#need to handle validation check to handle fail cases
+#also rejection case by USEr to flush out bad responses or queries
 
 def chat_interface()
 
@@ -144,3 +157,5 @@ def reroute_info_to_doc()
 #options to consider
     #1. overhead tracking of consent, multilevel consent on metadata to certain data
     #2. info passed through chatpgt that has metadata consent or clearance levels needs to perserve it accross information exchange
+    #constitutional ai
+
