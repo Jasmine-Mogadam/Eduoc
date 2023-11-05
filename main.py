@@ -28,6 +28,18 @@ def submit_scenario(state):
     state.scenario.submit(wait=True)
     state.message = state.scenario.message.read()
 
+def intialize_gui():
+    pages = {
+        "Login": page_1,
+        "Home": home.page_2,
+        "Settings": setting.page_3,
+        "Prescriptions": perscription.page_4,
+        "Help": help.page_5,
+        "Schedule": schedule.page_6
+    }
+    gui = Gui(pages=pages)
+    return gui
+
 if __name__ == "__main__":
     pages = {
         "Login": page_1,
