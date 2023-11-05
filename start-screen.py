@@ -1,85 +1,30 @@
-"""Python Flask WebApp Auth0 integration example
-"""
-
-import json
-from os import environ as env
-from urllib.parse import quote_plus, urlencode
-
-from authlib.integrations.flask_client import OAuth
-from dotenv import find_dotenv, load_dotenv
-from flask import Flask, redirect, render_template, session, url_for
-
+'''
 from taipy import Gui
-
-ENV_FILE = find_dotenv()
-if ENV_FILE:
-    load_dotenv(ENV_FILE)
-
-app = Flask(__name__)
-app.secret_key = env.get("APP_SECRET_KEY")
-
-
-oauth = OAuth(app)
-
-oauth.register(
-    "auth0",
-    client_id=env.get("AUTH0_CLIENT_ID"),
-    client_secret=env.get("AUTH0_CLIENT_SECRET"),
-    client_kwargs={
-        "scope": "openid profile email",
-    },
-    server_metadata_url=f'https://{env.get("AUTH0_DOMAIN")}/.well-known/openid-configuration',
-)
-
-
-# Controllers API
-@app.route("/")
-def home():
-    return render_template(
-        "home.html",
-        session=session.get("user"),
-        pretty=json.dumps(session.get("user"), indent=4),
-    )
-
-
-@app.route("/callback", methods=["GET", "POST"])
-def callback():
-    token = oauth.auth0.authorize_access_token()
-    session["user"] = token
-    return redirect("/")
-
-
-@app.route("/login")
-def login():
-    return oauth.auth0.authorize_redirect(
-        redirect_uri=url_for("callback", _external=True)
-    )
-
-
-@app.route("/logout")
-def logout():
-    session.clear()
-    return redirect(
-        "https://"
-        + env.get("AUTH0_DOMAIN")
-        + "/v2/logout?"
-        + urlencode(
-            {
-                "returnTo": url_for("home", _external=True),
-                "client_id": env.get("AUTH0_CLIENT_ID"),
-            },
-            quote_via=quote_plus,
-        )
-    )
-
+from taipy import Config
+from taipy import Core
 page_1 = """
 <h3 class="h5">ManagMed</h3>
 <|<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" zoomAndPan="magnify" viewBox="0 0 375 374.999991" height="500" preserveAspectRatio="xMidYMid meet" version="1.0"><defs><clipPath id="749ed33b4f"><path d="M 117 183 L 258 183 L 258 347 L 117 347 Z M 117 183 " clip-rule="nonzero"/></clipPath><clipPath id="53b0b963c3"><path d="M 187.5 0 L 375 187.5 L 187.5 375 L 0 187.5 Z M 187.5 0 " clip-rule="nonzero"/></clipPath><clipPath id="136d9d0114"><path d="M 187.5 0 L 375 187.5 L 187.5 375 L 0 187.5 Z M 187.5 0 " clip-rule="nonzero"/></clipPath><clipPath id="35dab84d43"><path d="M 117 28 L 258 28 L 258 186 L 117 186 Z M 117 28 " clip-rule="nonzero"/></clipPath><clipPath id="54e6bd64fc"><path d="M 187.5 0 L 375 187.5 L 187.5 375 L 0 187.5 Z M 187.5 0 " clip-rule="nonzero"/></clipPath><clipPath id="880945a325"><path d="M 187.5 0 L 375 187.5 L 187.5 375 L 0 187.5 Z M 187.5 0 " clip-rule="nonzero"/></clipPath><clipPath id="ee028a128f"><path d="M 127.964844 110.265625 L 156.605469 110.265625 L 156.605469 179.6875 L 127.964844 179.6875 Z M 127.964844 110.265625 " clip-rule="nonzero"/></clipPath><clipPath id="3a6f06fdf2"><path d="M 219.554688 110.265625 L 248.191406 110.265625 L 248.191406 179.6875 L 219.554688 179.6875 Z M 219.554688 110.265625 " clip-rule="nonzero"/></clipPath><clipPath id="850f695fb5"><path d="M 173.175781 67.683594 L 201.816406 67.683594 L 201.816406 179.675781 L 173.175781 179.675781 Z M 173.175781 67.683594 " clip-rule="nonzero"/></clipPath></defs><g clip-path="url(#749ed33b4f)"><g clip-path="url(#53b0b963c3)"><g clip-path="url(#136d9d0114)"><path fill="#004aad" d="M 257.46875 275.9375 L 257.402344 183.628906 L 117.527344 185.652344 L 117.519531 276.113281 L 117.53125 276.113281 C 117.550781 294 124.378906 311.878906 138.019531 325.519531 C 165.34375 352.84375 209.65625 352.84375 236.980469 325.519531 C 250.667969 311.832031 257.496094 293.878906 257.46875 275.9375 Z M 257.46875 275.9375 " fill-opacity="1" fill-rule="nonzero"/></g></g></g><g clip-path="url(#35dab84d43)"><g clip-path="url(#54e6bd64fc)"><g clip-path="url(#880945a325)"><path fill="#96cdec" d="M 257.332031 96.011719 C 256.625 79.09375 249.890625 62.390625 236.980469 49.480469 C 209.652344 22.152344 165.347656 22.152344 138.019531 49.480469 C 125.109375 62.390625 118.375 79.105469 117.671875 96.015625 L 117.527344 96.015625 L 117.527344 185.652344 L 257.402344 183.628906 Z M 257.332031 96.011719 " fill-opacity="1" fill-rule="nonzero"/></g></g></g><g clip-path="url(#ee028a128f)"><path fill="#012656" d="M 156.605469 110.265625 L 156.605469 179.6875 L 127.964844 179.6875 L 127.964844 110.265625 Z M 156.605469 110.265625 " fill-opacity="1" fill-rule="nonzero"/></g><g clip-path="url(#3a6f06fdf2)"><path fill="#012656" d="M 248.191406 110.265625 L 248.191406 179.6875 L 219.554688 179.6875 L 219.554688 110.265625 Z M 248.191406 110.265625 " fill-opacity="1" fill-rule="nonzero"/></g><g clip-path="url(#850f695fb5)"><path fill="#012656" d="M 201.816406 67.683594 L 201.816406 179.675781 L 173.175781 179.675781 L 173.175781 67.683594 Z M 201.816406 67.683594 " fill-opacity="1" fill-rule="nonzero"/></g></svg>|image|>
 <|submit|button|href="/login"|>
+
 """
 
+Gui(page_1).run(use_reloader=True)  # use_reloader=True if you are in development
 
 if __name__ == "__main__":
-    gui = Gui(page="# Taipy application", flask=app)
-    Gui(page_1).run(use_reloader=True)
-    gui.run(host="0.0.0.0", port=env.get("PORT", 3000))
+    Core().run()
+'''
+
+from flask import Flask
+from taipy import Gui
+
+flask_app = Flask(__name__)
+
+
+@flask_app.route("/home")
+def home_page():
+    return "The home page."
+
+
+gui = Gui(page="# Taipy application", flask=flask_app)
+gui.run()
