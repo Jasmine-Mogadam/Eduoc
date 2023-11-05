@@ -1,43 +1,28 @@
 from taipy import Gui
 from taipy import Config
 from taipy import Core
-#from taipy.gui import Markdown
+import perscription
+import help
+import schedule
+import home
+import setting
+from taipy.gui import Markdown
 
-#<|{content}|image|label=|on_action=function_name|>
 page_1 = """
-<|navbar|>
 <h3 class="h5">ManagMed</h3>
-<|button|>
+<|navbar|>
+<|toggle|theme|class_name=sidebar|>
 <|submit|button|on_action=submit_scenario|>
-
-
 """
-#helpppppp
-page_2 = """
-<|navbar|>
-<h3>testing something</h3>
+#page 2 is home
 
-"""
-page_3 = """
-<|navbar|>
-<h3>testing something</h3>
+#page 3 is Settings
+# page 4 is Perscription
 
-"""
-page_4 = """
-<|navbar|>
-<h3>testing something</h3>
+#page 5 is Help
 
-"""
-page_5 = """
-<|navbar|>
-<h3>testing something</h3>
+#page 6 is Schedule
 
-"""
-page_6 = """
-<|navbar|>
-<h3>testing something</h3>
-
-"""
 #content = 
 input_name = ""
 input_password = ""
@@ -50,14 +35,21 @@ def submit_scenario(state):
     state.message = state.scenario.message.read()
 
 if __name__ == "__main__":
+    #"""<|sidebar|Inside the container|>"""
     pages = {
         "Login": page_1,
-        "Home": page_2,
-        "Settings": page_3,
-        "Perscriptions": page_4,
-        "Help": page_5,
-        "Scheduele": page_6
+        "Home": home.page_2,
+        "Settings": setting.page_3,
+        "Perscriptions": perscription.page_4,
+        "Help": help.page_5,
+        "Scheduele": schedule.page_6
     }
     gui = Gui(pages=pages)
+    gui.run(stylekit=False)
+    stylekit = {
+        "color_primary": "#BADA55",
+        "color_secondary": "#O0FFE",
+    }
+    gui.run(stylekit=stylekit)
     gui.run(dark_mode=True)
     #Core().run()
