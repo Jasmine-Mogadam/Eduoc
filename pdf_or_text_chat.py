@@ -4,8 +4,8 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.embeddings import CohereEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import ElasticVectorSearch, Pinecone, Weaviate, FAISS
-import constants
-import cohereconstant
+#import constants
+#import cohereconstant
 import cohere
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
@@ -17,6 +17,16 @@ from langchain.llms import Cohere
 #code partially sourced from: https://www.youtube.com/watch?v=TLf90ipMzfE
 import os
 
+
+"""
+Requirements:
+
+pip install langchain
+pip install cohere
+pip install python-dotenv
+pip install PyPDF2
+
+"""
 
 
 #TO DO
@@ -33,18 +43,16 @@ import os
 #
 #
 #  4.  can you add voice functionality?  with play.ht?
-#
-#
-#
-#
-# 5.  CHANGE API-key loading, and figure out how to load a pdf other than from folder.
 
+
+APIKEY = "uMMJCaKxLNlvfKkkX2bUnNpm3nwazk6EeYfMWCxT"
 
 def pdf_or_text_chat(mode, query, pdf):
-
+    """
+    works if pdf is a text that refers to a path where its at
+    Does not work if pdf is a literal data object
+    """
     osTrackCohere = True
-    if not osTrackCohere:
-            os.environ["OPENAI_API_KEY"] = constants.APIKEY
 
     if(mode=="pdf"):
         #pdf chat mode
@@ -71,7 +79,7 @@ def pdf_or_text_chat(mode, query, pdf):
         texts = text_splitter.split_text(raw_text)
 
         if(osTrackCohere):
-            embeddings = CohereEmbeddings(cohere_api_key=cohereconstant.APIKEY)
+            embeddings = CohereEmbeddings(cohere_api_key=APIKEY)
         else:
             embeddings = OpenAIEmbeddings()
             
@@ -79,7 +87,7 @@ def pdf_or_text_chat(mode, query, pdf):
         docsearch = FAISS.from_texts(texts, embeddings)
 
 
-        chain = load_qa_chain(Cohere(cohere_api_key=cohereconstant.APIKEY), chain_type="stuff")
+        chain = load_qa_chain(Cohere(cohere_api_key=APIKEY), chain_type="stuff")
 
         #query = "who is the person featured in this document?"
         docs = docsearch.similarity_search(query)
@@ -95,11 +103,10 @@ def pdf_or_text_chat(mode, query, pdf):
 
         prompt = PromptTemplate(template=template, input_variables=["question"])
 
-        llm = Cohere(cohere_api_key=cohereconstant.APIKEY)
+        llm = Cohere(cohere_api_key=APIKEY)
 
         llm_chain = LLMChain(prompt=prompt, llm=llm)
 
-        question = "What NFL team won the Super Bowl in the year Justin Beiber was born?"
 
         print(llm_chain.run(question))
 
