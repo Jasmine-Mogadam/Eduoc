@@ -6,10 +6,11 @@ from taipy.gui import Markdown
 
 
 page_6 = """
-<|navbar|>
 <h3 class="h5">ManagMed</h3>
+<|navbar|>
 <h5> test #3</h5>
-<h3>testing something</h3>
+<h3>Schedule of your medications</h3>
+
 
 """
 
