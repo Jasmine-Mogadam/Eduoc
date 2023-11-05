@@ -10,8 +10,7 @@ page_6 = """
 <|navbar|>
 <h5> test #3</h5>
 <h3>Schedule of your medications</h3>
-
-
+<h1></h1>
 """
 
 
