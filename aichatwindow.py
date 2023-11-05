@@ -1,8 +1,8 @@
 import pdf_or_text_chat
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import json
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 # Simple in-memory store for messages
 messages = []
@@ -11,19 +11,15 @@ def concatenate_messages(messages):
     return_val = ' '.join(messages)
     return return_val
 
+@app.route('/')
+def index():
+    return render_template("chat.html")
+
 @app.route('/send', methods=['POST'])
 def send():
     message = request.json.get('message')
     messages.append(f'You: {message}')
-    
-    # Execute and capture Python code result
-    try:
-        result = str(eval(message))
-        messages.append(f'Result: {result}')
-    except Exception as e:
-        messages.append(f'Error: {str(e)}')
-    
-    return jsonify({"status": "success"})
+    return jsonify({"status": "success", "response": "Your message was received!"})
 
 @app.route('/get_messages', methods=['GET'])
 def get_messages():
@@ -31,7 +27,6 @@ def get_messages():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
 #read documentation, put it on top of mind before coding
 
 """
