@@ -8,8 +8,8 @@ app = Flask(__name__)
 messages = []
 
 def concatenate_messages(messages):
-    return_val
-    return return_val = ' '.join(messages)
+    return_val = ' '.join(messages)
+    return return_val
 
 @app.route('/send', methods=['POST'])
 def send():
