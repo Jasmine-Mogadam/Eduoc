@@ -3,7 +3,7 @@ from taipy import Config
 from taipy import Core
 from taipy.gui import Markdown
 
-page_5 = """
+page = """
 <h3 class="h5">ManagMed</h3>
 <|navbar|>
 <h5>test #2</h5>

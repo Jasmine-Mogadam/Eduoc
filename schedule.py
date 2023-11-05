@@ -5,7 +5,7 @@ from taipy.gui import Markdown
 
 
 
-page_6 = """
+page = """
 <h3 class="h5">ManagMed</h3>
 <|navbar|>
 <h5> test #3</h5>

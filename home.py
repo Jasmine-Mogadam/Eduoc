@@ -3,7 +3,7 @@ from taipy import Config
 from taipy import Core
 
 
-page_2 = """
+page = """
 <h3 class="h5">ManagMed</h3>
 <|toggle|theme|class_name=sidebar|>
 <|navbar|>
