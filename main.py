@@ -1,12 +1,9 @@
 from taipy import Gui
-from taipy import Config
-from taipy import Core
 import prescription 
 import help
 import schedule
 import home
 import setting
-from taipy.gui import Markdown
 
 page_1 = """
 <h3 class="h5">ManagMed</h3>
