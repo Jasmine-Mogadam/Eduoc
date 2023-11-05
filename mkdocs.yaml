@@ -1,8 +1,0 @@
-site_name: ManagMed
-nav:
-  - Home: index.md
-  - Home: home.md
-  - Settings: settings.md
-  - Prescriptions: prescriptions.md
-  - Help: help.md
-  - Schedule: schedule.md
