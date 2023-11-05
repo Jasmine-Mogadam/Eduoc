@@ -72,6 +72,20 @@ def logout():
         )
     )
 
+from threading import Thread, Event
+import main
+
+class runThread(Thread):
+    def __init__(self, toRun, port):
+        Thread.__init__(self)
+        self.toRun = toRun
+        self.port = port
+
+    def run(self):
+        self.toRun.run(host="0.0.0.0", port=env.get("PORT", self.port))
+
 if __name__ == "__main__":
-    gui = Gui()
-    app.run(host="0.0.0.0", port=env.get("PORT", 3000))
+    appThread = runThread(app, 3000)
+    guiThread = runThread(main.intialize_gui(), 5000)
+    appThread.start()
+    guiThread.start()
