@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Flask</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="chat-box">
+        <!-- Chat messages will appear here -->
+    </div>
+    <textarea id="message-input"></textarea>
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        function refreshChat() {
+            $.get('/get_messages', function(data) {
+                $('#chat-box').empty();
+                data.messages.forEach(function(msg) {
+                    $('#chat-box').append('<p>' + msg + '</p>');
+                });
+            });
+        }
+
+        function sendMessage() {
+            const message = $('#message-input').val();
+            $.post('/send', JSON.stringify({'message': message}), function(data) {
+                $('#message-input').val('');  // Clear the input
+                refreshChat();
+            }, 'json');
+        }
+
+        // Initial load
+        refreshChat();
+    </script>
+</body>
+</html>
