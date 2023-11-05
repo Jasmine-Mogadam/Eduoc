@@ -1,5 +1,5 @@
 from taipy import Gui
-import prescription, help, schedule, home, setting, logout
+import prescription, help, schedule, home, setting, lookup
 
 page_1 = """
 <h3 class="h5">ManagMed</h3>
@@ -15,7 +15,7 @@ def intialize_gui():
         "Home": root_md + home.page,
         "Settings": root_md + setting.page,
         "Prescriptions": root_md + prescription.page,
-        "Lookup Prescription": lookup.page_7,
+        #"LookupPrescription": lookup.page_7,
         "Schedule": root_md + schedule.page,
         "Help": root_md + help.page
     }
