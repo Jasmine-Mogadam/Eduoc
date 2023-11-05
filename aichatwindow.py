@@ -1,4 +1,4 @@
-import pdf_or_text_chat.py
+import pdf_or_text_chat
 from flask import Flask, request, jsonify
 import json
 
@@ -8,8 +8,8 @@ app = Flask(__name__)
 messages = []
 
 def concatenate_messages(messages):
-    return_val
-    return return_val = ' '.join(messages)
+    return_val = ' '.join(messages)
+    return return_val
 
 @app.route('/send', methods=['POST'])
 def send():

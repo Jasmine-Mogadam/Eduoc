@@ -47,5 +47,4 @@ Provide a brief description of the medication, including its purpose and primary
 - *Advise users to consult with a healthcare professional for personalized advice and guidance.*
 
 **Note:** This is a placeholder text. Please replace the generic information with specific details about the medication you are referring to.
-
 """

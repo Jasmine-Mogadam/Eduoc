@@ -15,8 +15,9 @@ def intialize_gui():
         "Home": root_md + home.page,
         "Settings": root_md + setting.page,
         "Prescriptions": root_md + prescription.page,
+        "Lookup Prescription": lookup.page_7,
         "Schedule": root_md + schedule.page,
         "Help": root_md + help.page
     }
-    gui = Gui(pages=pages, css_file="main.css")
+    gui = Gui(pages=pages)
     return gui
