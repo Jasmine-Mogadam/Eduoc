@@ -1,7 +1,7 @@
 from taipy import Gui
 from taipy import Config
 from taipy import Core
-import perscription
+import prescription 
 import help
 import schedule
 import home
@@ -33,9 +33,10 @@ def intialize_gui():
         "Login": page_1,
         "Home": home.page_2,
         "Settings": setting.page_3,
-        "Prescriptions": perscription.page_4,
+        "Prescriptions": prescription.page_4,
         "Help": help.page_5,
         "Schedule": schedule.page_6
+
     }
     gui = Gui(pages=pages)
     return gui
@@ -45,7 +46,7 @@ if __name__ == "__main__":
         "Login": page_1,
         "Home": home.page_2,
         "Settings": setting.page_3,
-        "Perscriptions": perscription.page_4,
+        "Perscriptions": prescription .page_4,
         "Help": help.page_5,
         "Scheduele": schedule.page_6
     }
