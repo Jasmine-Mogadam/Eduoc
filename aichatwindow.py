@@ -1,4 +1,4 @@
-import pdf_or_text_chat.py
+import pdf_or_text_chat
 from flask import Flask, request, jsonify
 import json
 
