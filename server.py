@@ -72,7 +72,8 @@ def logout():
         )
     )
 
-from threading import Thread, Event
+from threading import Thread
+from taipy.gui import navigate
 import main
 
 class runThread(Thread):
@@ -83,6 +84,7 @@ class runThread(Thread):
 
     def run(self):
         self.toRun.run(host="0.0.0.0", port=env.get("PORT", self.port))
+
 
 if __name__ == "__main__":
     appThread = runThread(app, 3000)
