@@ -4,6 +4,7 @@ import help
 import schedule
 import home
 import setting
+import lookup
 
 page_1 = """
 <h3 class="h5">ManagMed</h3>
@@ -32,7 +33,8 @@ def intialize_gui():
         "Settings": setting.page_3,
         "Prescriptions": prescription.page_4,
         "Help": help.page_5,
-        "Schedule": schedule.page_6
+        "Schedule": schedule.page_6,
+        "Lookup Prescription": lookup.page_7
 
     }
     gui = Gui(pages=pages)
@@ -45,7 +47,8 @@ if __name__ == "__main__":
         "Settings": setting.page_3,
         "Perscriptions": prescription .page_4,
         "Help": help.page_5,
-        "Scheduele": schedule.page_6
+        "Scheduele": schedule.page_6,
+        "Lookup Prescription": lookup.page_7
     }
     gui = Gui(pages=pages)
     stylekit = {
