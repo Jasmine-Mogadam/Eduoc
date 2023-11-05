@@ -34,7 +34,7 @@ def intialize_gui():
         "Prescriptions": prescription.page_4,
         "Help": help.page_5,
         "Schedule": schedule.page_6,
-        "Lookup Prescription": lookup.page_7
+        "Lookup_Prescription": lookup.page_7
 
     }
     gui = Gui(pages=pages)
@@ -48,7 +48,7 @@ if __name__ == "__main__":
         "Perscriptions": prescription .page_4,
         "Help": help.page_5,
         "Scheduele": schedule.page_6,
-        "Lookup Prescription": lookup.page_7
+        "Lookup_Prescription": lookup.page_7
     }
     gui = Gui(pages=pages)
     stylekit = {
