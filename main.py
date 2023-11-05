@@ -15,13 +15,8 @@ page_1 = """
 <h3 class="h5">ManagMed</h3>
 <|{content}|image|label=|on_action=function_name|>
 
-Username: <|{input_name}|input|>
-
-Password: <|{input_password}|input|>
-
 <|submit|button|on_action=submit_scenario|>
 
-Message: <|{message}|text|>
 """
 
 page_2 = """
