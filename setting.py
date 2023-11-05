@@ -8,5 +8,5 @@ page_3 = """
 <|navbar|>
 <h6>Test #5</h6>
 <h3>testing something</h3>
-
 """
+
