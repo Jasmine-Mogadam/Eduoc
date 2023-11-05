@@ -18,6 +18,16 @@ from langchain.llms import Cohere
 import os
 
 
+"""
+Requirements:
+
+pip install langchain
+pip install cohere
+pip install python-dotenv
+pip install PyPDF2
+
+"""
+
 
 #TO DO
 #
@@ -38,7 +48,10 @@ import os
 APIKEY = "uMMJCaKxLNlvfKkkX2bUnNpm3nwazk6EeYfMWCxT"
 
 def pdf_or_text_chat(mode, query, pdf):
-
+    """
+    works if pdf is a text that refers to a path where its at
+    Does not work if pdf is a literal data object
+    """
     osTrackCohere = True
 
     if(mode=="pdf"):
